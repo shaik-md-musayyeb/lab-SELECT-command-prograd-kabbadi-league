@@ -36,11 +36,18 @@ select name from player where id in(select player_of_match from outcome where id
 select name from player where skill_id in (select id from skill where name='all rounders') order by name;
 
 -- 16. **Write a query to display the venue names for all the games that were played on `2020-03-09`. Display the records sorted in ascending order based on venue name.**
-
+select stadium_name from venue where id in ( select venue_id from game where game_date='09-mar-2020') order by stadium_name;
 -- 17. **Write a query to display the Coach's name of the team `Iran`**
+select coach from team where name='iran';
 
 -- 18. **Write a query to display the event number and the defence points of `Fazel Atrachali` in each event. Display the records sorted in ascending order based on event number.**
-
+select event_no from event where raider_id in (select id from player where name = 'Fazel Atrachali') order by event_no;
+--select * from player;
 -- 19. **Write a query to display the names of the Winning teams in the month of March 2020. Display the records sorted in ascending order based on team name.**
-
+select name from team where id in (select winner_team_id from outcome where id in (select outcome_id from game where game_date between '01-mar-2020' and '31-mar-2020')) order by name;
+--select * from outcome;
+--select * from game;
 -- 20. **Write a query to display the names of players who were the player of the match in the games held in March 2020. Display the records sorted in ascending order based on player name.**
+select name from player where id in (select player_of_match from outcome where id in (select outcome_id from game where game_date between '01-mar-2020' and '31-mar-2020')) order by name;
+--select * from outcome;
+--select * from game;
